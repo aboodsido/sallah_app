@@ -1,40 +1,25 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../Widgets/custom_button.dart';
-import '../Widgets/custom_container.dart';
 import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
+import '../Widgets/custom_button.dart';
+import '../Widgets/custom_container.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ForgotPassScreen extends StatefulWidget {
+  const ForgotPassScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgotPassScreen> createState() => _ForgotPassScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailTextCotroller = TextEditingController();
+class _ForgotPassScreenState extends State<ForgotPassScreen> {
   final TextEditingController _passTextCotroller = TextEditingController();
-  TapGestureRecognizer? _tapRecognizer;
-
-  @override
-  void initState() {
-    super.initState();
-    _tapRecognizer = TapGestureRecognizer()..onTap = _navigateToSignUp;
-  }
-
-  void _navigateToSignUp() {
-    Navigator.pushNamed(context, '/SignUpScreen');
-  }
 
   @override
   void dispose() {
-    _emailTextCotroller.dispose();
     _passTextCotroller.dispose();
-    _tapRecognizer!.dispose();
     super.dispose();
   }
 
@@ -63,26 +48,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               Positioned(
-                left: 20.w,
-                top: 80.h,
-                child: Text(
-                  'Sign In',
-                  style:
-                      GoogleFonts.roboto(color: Colors.white, fontSize: 35.sp),
+                left: 10.w,
+                top: 30.h,
+                child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-              Positioned(
-                right: 20.w,
-                top: 50.h,
-                child: Text(
-                  'Skip',
-                  style:
-                      GoogleFonts.roboto(color: Colors.white, fontSize: 15.sp),
-                ),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+              Container(
+                margin: EdgeInsets.only( left: 20.w, right: 20.w),
+                child: Center(
                   child: Card(
                     shape: const OutlineInputBorder(
                       borderSide: BorderSide(width: 0, color: Colors.white),
@@ -94,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.white,
                     child: SizedBox(
                       width: double.infinity,
-                      height: 425.h,
+                      height: 400.h,
                       child: Padding(
                         padding:
                             const EdgeInsets.only(top: 50, left: 20, right: 20),
@@ -105,22 +83,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               width: 145.w,
                               height: 45.h,
                             ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height / 12,
-                            ),
-                            CustomContainer(
-                              width: double.infinity,
-                              height: 40.h,
-                              color: Colors.transparent,
-                              child: buildTextFormField(
-                                obscure: false,
-                                keyboardType: TextInputType.emailAddress,
-                                controller: _emailTextCotroller,
-                                hintText: 'Email',
-                                icon: Icons.email,
-                              ),
-                            ),
                             SizedBox(height: 20.h),
+                            Text(
+                              'Forgot Password',
+                              style: GoogleFonts.roboto(
+                                  color: kGrey, fontSize: 17.sp),
+                            ),
+                            SizedBox(height: 60.h),
                             CustomContainer(
                               width: double.infinity,
                               height: 40.h,
@@ -133,32 +102,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 obscure: true,
                               ),
                             ),
-                            SizedBox(height: 5.h),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, '/ForgotPassScreen');
-                                  },
-                                  child: Text(
-                                    'Forgot Password',
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 11.sp, color: Colors.black),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 15),
+                            SizedBox(height: 50.h),
                             CustomButton(
                               width: 150.w,
                               height: 40.h,
                               color: kMainColor,
                               child: Center(
                                 child: Text(
-                                  'Sign In',
+                                  'Resend',
                                   style: GoogleFonts.roboto(
                                       color: Colors.white, fontSize: 15.sp),
                                 ),
@@ -166,22 +117,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               onTap: () {},
                             ),
                             SizedBox(height: 10.h),
-                            Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                      text: "Don't have an account ?",
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 10.sp,
-                                          color: Colors.black)),
-                                  TextSpan(
-                                      recognizer: _tapRecognizer,
-                                      text: " Sign Up",
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 12.sp, color: kMainColor)),
-                                ],
-                              ),
-                            ),
                           ],
                         ),
                       ),

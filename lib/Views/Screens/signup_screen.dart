@@ -67,9 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   left: 10.w,
                   top: 30.h,
                   child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                    onPressed: () => Navigator.pop(context),
                     icon: const Icon(
                       Icons.arrow_back_ios_new,
                       color: Colors.white,

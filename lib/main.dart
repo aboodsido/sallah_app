@@ -4,6 +4,7 @@ import 'package:sallah_app/Views/Screens/city_screen.dart';
 import 'package:sallah_app/Views/Screens/signup_screen.dart';
 import 'package:sallah_app/constants/colors.dart';
 
+import 'Views/Screens/forgot_pass_screen.dart';
 import 'Views/Screens/login_screen.dart';
 import 'Views/Screens/pageview_screen.dart';
 import 'Views/Screens/splash_screen.dart';
@@ -35,6 +36,7 @@ class SallahApp extends StatelessWidget {
             '/AdsScreen': (context) => const PageViewScreen(),
             '/LoginScreen': (context) => const LoginScreen(),
             '/SignUpScreen': (context) => const SignUpScreen(),
+            '/ForgotPassScreen': (context) => const ForgotPassScreen(),
           },
         );
       },
