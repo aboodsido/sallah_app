@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
+import '../../constants/screen_size.dart';
 import '../Widgets/custom_button.dart';
 import '../Widgets/custom_container.dart';
 
@@ -28,8 +29,8 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: double.infinity,
+          height:  ScreenSize.getHeight(context),
+          width:  ScreenSize.getWidth(context),
           child: Stack(
             children: [
               Image.asset(

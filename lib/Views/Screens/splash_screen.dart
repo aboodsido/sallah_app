@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
+import '../../constants/screen_size.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -28,8 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
+        height: ScreenSize.getHeight(context),
+        width: ScreenSize.getWidth(context),
         child: Stack(
           children: [
             Image.asset(

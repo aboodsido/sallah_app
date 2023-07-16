@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constants/screen_size.dart';
+import '../Widgets/appbar_shape.dart';
+import '../Widgets/bground_image.dart';
 import '../Widgets/custom_button.dart';
 import '../Widgets/custom_container.dart';
 import '../../constants/app_images.dart';
@@ -43,25 +46,12 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: double.infinity,
+          height:  ScreenSize.getHeight(context),
+          width:  ScreenSize.getWidth(context),
           child: Stack(
             children: [
-              Image.asset(
-                Assets.imagesBground,
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Image.asset(
-                  Assets.imagesAppBarShape,
-                  fit: BoxFit.fill,
-                  width: double.infinity,
-                  height: 244.h,
-                ),
-              ),
+              const BackgroundImage(),
+              const AppbarShape(),
               Positioned(
                 left: 20.w,
                 top: 80.h,
@@ -139,7 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, '/ForgotPassScreen');
+                                    Navigator.pushNamed(
+                                        context, '/ForgotPassScreen');
                                   },
                                   child: Text(
                                     'Forgot Password',

@@ -5,6 +5,7 @@ import 'package:sallah_app/Views/Widgets/custom_container.dart';
 
 import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
+import '../../constants/screen_size.dart';
 import '../Widgets/custom_button.dart';
 
 class CityScreen extends StatefulWidget {
@@ -29,13 +30,12 @@ class _CityScreenState extends State<CityScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
+    
 
     return Scaffold(
       body: Container(
-        width: screenWidth,
-        height: screenHeight,
+        width:  ScreenSize.getWidth(context),
+        height:  ScreenSize.getHeight(context),
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.imagesBground), fit: BoxFit.cover),

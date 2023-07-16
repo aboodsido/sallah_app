@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constants/screen_size.dart';
 import '../Widgets/custom_button.dart';
 import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
@@ -42,8 +43,8 @@ class _PageViewScreenState extends State<PageViewScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        width: ScreenSize.getWidth(context),
+        height: ScreenSize.getHeight(context),
         child: PageView(
           controller: _pageController,
           onPageChanged: _onPageChanged,

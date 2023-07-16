@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
+import '../../constants/screen_size.dart';
+import '../Widgets/appbar_shape.dart';
+import '../Widgets/bground_image.dart';
 import '../Widgets/custom_button.dart';
 import '../Widgets/custom_container.dart';
 
@@ -35,25 +38,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: double.infinity,
+          height: ScreenSize.getHeight(context),
+          width:  ScreenSize.getWidth(context),
           child: Stack(
             children: [
-              Image.asset(
-                Assets.imagesBground,
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Image.asset(
-                  Assets.imagesAppBarShape,
-                  fit: BoxFit.fill,
-                  width: double.infinity,
-                  height: 244.h,
-                ),
-              ),
+              const BackgroundImage(),
+              const AppbarShape(),
               Positioned(
                 left: 20.w,
                 top: 80.h,
@@ -197,7 +187,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       color: Colors.white, fontSize: 15.sp),
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushReplacementNamed(context, '/WelcomeScreen');
+                              },
                             ),
                             SizedBox(height: 10.h),
                           ],
