@@ -5,6 +5,10 @@ class Assets {
   /// assets/images/appBarShape.png
   static const String imagesAppBarShape = "assets/images/appBarShape.png";
 
+  /// Assets for imagesApple
+  /// assets/images/apple.png
+  static const String imagesApple = "assets/images/apple.png";
+
   /// Assets for imagesBground
   /// assets/images/bground.png
   static const String imagesBground = "assets/images/bground.png";
@@ -48,6 +52,10 @@ class Assets {
   /// Assets for imagesSplash
   /// assets/images/splash.png
   static const String imagesSplash = "assets/images/splash.png";
+
+  /// Assets for imagesSvg1
+  /// assets/images/svg1.svg
+  static const String imagesSvg1 = "assets/images/svg1.svg";
 
   /// Assets for imagesVegeImage
   /// assets/images/vegeImage.png

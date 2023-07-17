@@ -51,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
                     CustomContainer(
                       width: ScreenSize.getWidth(context),
                       height: 50.h,
-                      color: Colors.white,
+                      color: kWhite,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 8, horizontal: 20),
@@ -89,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                     CustomContainer(
                       width: ScreenSize.getWidth(context),
                       height: 50.h,
-                      color: Colors.white,
+                      color: kWhite,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 8, horizontal: 20),
@@ -131,7 +131,7 @@ class ProfileScreen extends StatelessWidget {
                         child: Text(
                           'Edit Profile',
                           style: GoogleFonts.roboto(
-                              color: Colors.white, fontSize: 15.sp),
+                              color: kWhite, fontSize: 15.sp),
                         ),
                         onTap: () {
                           Navigator.push(

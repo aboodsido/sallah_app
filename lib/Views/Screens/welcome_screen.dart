@@ -61,7 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                         'Home',
                         style: GoogleFonts.roboto(
                           fontSize: 20.sp,
-                          color: Colors.white,
+                          color: kWhite,
                           letterSpacing: 2,
                         ),
                       ),

@@ -118,7 +118,7 @@ class _CityScreenState extends State<CityScreen> {
                         child: Text(
                           'Ok',
                           style: GoogleFonts.roboto(
-                              fontSize: 20.sp, color: Colors.white),
+                              fontSize: 20.sp, color: kWhite),
                         ),
                       ))
                 ],

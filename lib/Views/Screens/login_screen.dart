@@ -46,8 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          height:  ScreenSize.getHeight(context),
-          width:  ScreenSize.getWidth(context),
+          height: ScreenSize.getHeight(context),
+          width: ScreenSize.getWidth(context),
           child: Stack(
             children: [
               const BackgroundImage(),
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text(
                   'Sign In',
                   style:
-                      GoogleFonts.roboto(color: Colors.white, fontSize: 35.sp),
+                      GoogleFonts.roboto(color: kWhite, fontSize: 35.sp),
                 ),
               ),
               Positioned(
@@ -67,21 +67,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text(
                   'Skip',
                   style:
-                      GoogleFonts.roboto(color: Colors.white, fontSize: 15.sp),
+                      GoogleFonts.roboto(color: kWhite, fontSize: 15.sp),
                 ),
               ),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Card(
-                    shape: const OutlineInputBorder(
-                      borderSide: BorderSide(width: 0, color: Colors.white),
-                      borderRadius: BorderRadius.all(
+                    shape: OutlineInputBorder(
+                      borderSide: BorderSide(width: 0, color: kWhite),
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(20),
                       ),
                     ),
                     elevation: 7,
-                    color: Colors.white,
+                    color: kWhite,
                     child: SizedBox(
                       width: double.infinity,
                       height: 425.h,
@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Text(
                                   'Sign In',
                                   style: GoogleFonts.roboto(
-                                      color: Colors.white, fontSize: 15.sp),
+                                      color: kWhite, fontSize: 15.sp),
                                 ),
                               ),
                               onTap: () {},

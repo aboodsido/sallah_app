@@ -39,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: SingleChildScrollView(
         child: SizedBox(
           height: ScreenSize.getHeight(context),
-          width:  ScreenSize.getWidth(context),
+          width: ScreenSize.getWidth(context),
           child: Stack(
             children: [
               const BackgroundImage(),
@@ -49,8 +49,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 top: 80.h,
                 child: Text(
                   'Sign Up',
-                  style:
-                      GoogleFonts.roboto(color: Colors.white, fontSize: 35.sp),
+                  style: GoogleFonts.roboto(color: kWhite, fontSize: 35.sp),
                 ),
               ),
               Positioned(
@@ -58,9 +57,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   top: 30.h,
                   child: IconButton(
                     onPressed: () => Navigator.pop(context),
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.arrow_back_ios_new,
-                      color: Colors.white,
+                      color: kWhite,
                     ),
                   )),
               Positioned(
@@ -68,22 +67,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 top: 45.h,
                 child: Text(
                   'Skip',
-                  style:
-                      GoogleFonts.roboto(color: Colors.white, fontSize: 15.sp),
+                  style: GoogleFonts.roboto(color: kWhite, fontSize: 15.sp),
                 ),
               ),
               Container(
                 margin: EdgeInsets.only(top: 100.h, left: 20.w, right: 20.w),
                 child: Center(
                   child: Card(
-                    shape: const OutlineInputBorder(
-                      borderSide: BorderSide(width: 0, color: Colors.white),
-                      borderRadius: BorderRadius.all(
+                    shape: OutlineInputBorder(
+                      borderSide: BorderSide(width: 0, color: kWhite),
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(20),
                       ),
                     ),
                     elevation: 7,
-                    color: Colors.white,
+                    color: kWhite,
                     child: SizedBox(
                       width: double.infinity,
                       height: 500.h,
@@ -184,11 +182,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: Text(
                                   'Sign Up',
                                   style: GoogleFonts.roboto(
-                                      color: Colors.white, fontSize: 15.sp),
+                                      color: kWhite, fontSize: 15.sp),
                                 ),
                               ),
                               onTap: () {
-                                Navigator.pushReplacementNamed(context, '/WelcomeScreen');
+                                Navigator.pushReplacementNamed(
+                                    context, '/WelcomeScreen');
                               },
                             ),
                             SizedBox(height: 10.h),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'home_screen.dart';
+import 'my_cart_screen.dart';
+import 'offers_screen.dart';
 import 'profile_screen.dart';
 import '../../constants/colors.dart';
 
@@ -13,13 +15,11 @@ class CustomBottomNavigationBar extends StatefulWidget {
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int _selectedIndex = 0;
 
-  HomeScreen homeScreen = HomeScreen();
-
   final List<Widget> _pages = [
     HomeScreen(),
     ProfileScreen(),
-    OffersPage(),
-    CartPage(),
+    OffersScreen(),
+    MyCartScreen(),
   ];
 
   @override
@@ -94,9 +94,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               height: 50.h,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(140),
-                    bottomLeft: Radius.circular(140),
-                    bottomRight: Radius.circular(140)),
+                  topLeft: Radius.circular(140),
+                  bottomLeft: Radius.circular(140),
+                  bottomRight: Radius.circular(140),
+                ),
                 color: kMainColor,
               ),
               child: Icon(
@@ -121,7 +122,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     padding: const EdgeInsets.all(2),
                     child: Center(
                       child: Text(
-                        '${homeScreen.itemCount}',
+                        '5',
                         style: TextStyle(color: kMainColor, fontSize: 10.sp),
                       ),
                     ),
@@ -131,31 +132,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-// ignore: use_key_in_widget_constructors
-class OffersPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Center(
-        child: Text('Offers Page'),
-      ),
-    );
-  }
-}
-
-class CartPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Center(
-        child: Text('Cart Page'),
       ),
     );
   }

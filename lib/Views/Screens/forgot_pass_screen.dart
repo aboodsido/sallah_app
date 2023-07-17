@@ -29,8 +29,8 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          height:  ScreenSize.getHeight(context),
-          width:  ScreenSize.getWidth(context),
+          height: ScreenSize.getHeight(context),
+          width: ScreenSize.getWidth(context),
           child: Stack(
             children: [
               Image.asset(
@@ -53,24 +53,24 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                 top: 30.h,
                 child: IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.arrow_back_ios_new,
-                    color: Colors.white,
+                    color: kWhite,
                   ),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only( left: 20.w, right: 20.w),
+                margin: EdgeInsets.only(left: 20.w, right: 20.w),
                 child: Center(
                   child: Card(
-                    shape: const OutlineInputBorder(
-                      borderSide: BorderSide(width: 0, color: Colors.white),
-                      borderRadius: BorderRadius.all(
+                    shape: OutlineInputBorder(
+                      borderSide: BorderSide(width: 0, color: kWhite),
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(20),
                       ),
                     ),
                     elevation: 7,
-                    color: Colors.white,
+                    color: kWhite,
                     child: SizedBox(
                       width: double.infinity,
                       height: 400.h,
@@ -112,7 +112,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                                 child: Text(
                                   'Resend',
                                   style: GoogleFonts.roboto(
-                                      color: Colors.white, fontSize: 15.sp),
+                                      color: kWhite, fontSize: 15.sp),
                                 ),
                               ),
                               onTap: () {},

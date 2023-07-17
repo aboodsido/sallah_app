@@ -41,7 +41,7 @@ class _PageViewScreenState extends State<PageViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kWhite,
       body: SizedBox(
         width: ScreenSize.getWidth(context),
         height: ScreenSize.getHeight(context),
@@ -91,7 +91,7 @@ class _PageViewScreenState extends State<PageViewScreen> {
                   child: Text(
                     'Get Started',
                     style: GoogleFonts.roboto(
-                        color: Colors.white, fontSize: 14.sp),
+                        color: kWhite, fontSize: 14.sp),
                   ),
                 ),
               ),
@@ -159,7 +159,7 @@ class _PageViewScreenState extends State<PageViewScreen> {
                     height: 12,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: _currentPage == i ? kMainColor : Colors.white,
+                      color: _currentPage == i ? kMainColor : kWhite,
                     ),
                   ),
               ],

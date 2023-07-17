@@ -58,9 +58,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   child: Card(
                     elevation: 0,
                     margin: EdgeInsets.only(top: 300.h, bottom: 20.h),
-                    shape: const OutlineInputBorder(
-                      borderSide: BorderSide(width: 0, color: Colors.white),
-                      borderRadius: BorderRadius.all(
+                    shape:  OutlineInputBorder(
+                      borderSide: BorderSide(width: 0, color: kWhite),
+                      borderRadius:const BorderRadius.all(
                         Radius.circular(20),
                       ),
                     ),
@@ -119,7 +119,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               child: Text(
                                 'Save',
                                 style: GoogleFonts.roboto(
-                                    color: Colors.white, fontSize: 15.sp),
+                                    color: kWhite, fontSize: 15.sp),
                               ),
                               onTap: () {})
                         ],

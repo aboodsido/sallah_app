@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sallah_app/Views/Screens/search_screen.dart';
 import 'package:sallah_app/Views/Widgets/bground_image.dart';
 import 'package:sallah_app/Views/Widgets/custom_button.dart';
 import 'package:sallah_app/constants/app_images.dart';
 import 'package:sallah_app/constants/colors.dart';
 import 'package:sallah_app/constants/screen_size.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   HomeScreen({
     super.key,
@@ -47,6 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: InkWell(
               onTap: () {
                 //todo: Navigate to search screen
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SearchScreen()));
               },
               child: Container(
                 width: 80.w,
@@ -91,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           });
                         },
                         child: Card(
-                          color: current == index ? kMainColor : Colors.white,
+                          color: current == index ? kMainColor : kWhite,
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(35),
@@ -115,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         style: GoogleFonts.roboto(
                                           fontSize: 15.sp,
                                           color: current == index
-                                              ? Colors.white
+                                              ? kWhite
                                               : kMainColor,
                                         ),
                                       ),
@@ -148,141 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return SizedBox(
                           width: 160.w,
                           height: 200.h,
-                          child: Card(
-                            elevation: 3,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(20),
-                                bottomLeft: Radius.circular(20),
-                                bottomRight: Radius.circular(20),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      Assets.imagesImage1,
-                                      width: 75.w,
-                                      height: 75.h,
-                                    ),
-                                    SizedBox(height: 5.h),
-                                    Text(
-                                      'Data',
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 13.sp,
-                                        color: kGrey,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5.h),
-                                    Text(
-                                      '5.00 \$/K',
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 18.sp,
-                                        color: kMainColor,
-                                      ),
-                                    ),
-                                    SizedBox(height: 20.h),
-                                    Row(
-                                      children: [
-                                        Visibility(
-                                          visible: isInCart &&
-                                              widget.itemCount > 0 &&
-                                              currentCardIndex == index,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                --widget.itemCount;
-                                              });
-                                            },
-                                            child: Container(
-                                              width: 25.w,
-                                              height: 25.h,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                  topRight: Radius.circular(20),
-                                                  topLeft: Radius.circular(2),
-                                                  bottomLeft:
-                                                      Radius.circular(2),
-                                                  bottomRight:
-                                                      Radius.circular(2),
-                                                ),
-                                                color: kMainColor,
-                                              ),
-                                              child: const Icon(
-                                                Icons.remove,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 3.w),
-                                        Expanded(
-                                          child: CustomButton(
-                                            width: double.infinity,
-                                            height: 30.h,
-                                            color: kMainColor,
-                                            child: Text(
-                                              isInCart &&
-                                                      widget.itemCount > 0 &&
-                                                      currentCardIndex == index
-                                                  ? 'Count in Cart (${widget.itemCount})'
-                                                  : 'Add to cart',
-                                              style: GoogleFonts.roboto(
-                                                  color: Colors.white,
-                                                  fontSize: 10.sp),
-                                            ),
-                                            onTap: () {
-                                              setState(() {
-                                                currentCardIndex = index;
-                                                isInCart = true;
-                                                widget.itemCount = 1;
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                        SizedBox(width: 3.w),
-                                        Visibility(
-                                          visible: isInCart &&
-                                              widget.itemCount > 0 &&
-                                              currentCardIndex == index,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                ++widget.itemCount;
-                                              });
-                                            },
-                                            child: Container(
-                                              width: 25.w,
-                                              height: 25.h,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                  topRight: Radius.circular(2),
-                                                  topLeft: Radius.circular(20),
-                                                  bottomLeft:
-                                                      Radius.circular(2),
-                                                  bottomRight:
-                                                      Radius.circular(2),
-                                                ),
-                                                color: kMainColor,
-                                              ),
-                                              child: Icon(
-                                                Icons.add,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                          child: itemCard(index),
                         );
                       },
                     ),
@@ -293,7 +163,137 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      
+    );
+  }
+
+  Card itemCard(int index) {
+    return Card(
+      elevation: 3,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Column(
+            children: [
+              Image.asset(
+                Assets.imagesApple,
+                width: 75.w,
+                height: 75.h,
+              ),
+              SizedBox(height: 5.h),
+              Text(
+                'Data',
+                style: GoogleFonts.roboto(
+                  fontSize: 13.sp,
+                  color: kGrey,
+                ),
+              ),
+              SizedBox(height: 5.h),
+              Text(
+                '5.00 \$/K',
+                style: GoogleFonts.roboto(
+                  fontSize: 18.sp,
+                  color: kMainColor,
+                ),
+              ),
+              SizedBox(height: 20.h),
+              Row(
+                children: [
+                  Visibility(
+                    visible: isInCart &&
+                        widget.itemCount > 0 &&
+                        currentCardIndex == index,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          --widget.itemCount;
+                        });
+                      },
+                      child: Container(
+                        width: 25.w,
+                        height: 25.h,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            topLeft: Radius.circular(2),
+                            bottomLeft: Radius.circular(2),
+                            bottomRight: Radius.circular(2),
+                          ),
+                          color: kMainColor,
+                        ),
+                        child: Icon(
+                          Icons.remove,
+                          color: kWhite,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 3.w),
+                  Expanded(
+                    child: CustomButton(
+                      width: double.infinity,
+                      height: 30.h,
+                      color: kMainColor,
+                      child: Text(
+                        isInCart &&
+                                widget.itemCount > 0 &&
+                                currentCardIndex == index
+                            ? 'Count in Cart (${widget.itemCount})'
+                            : 'Add to cart',
+                        style:
+                            GoogleFonts.roboto(color: kWhite, fontSize: 10.sp),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          currentCardIndex = index;
+                          isInCart = true;
+                          widget.itemCount = 1;
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 3.w),
+                  Visibility(
+                    visible: isInCart &&
+                        widget.itemCount > 0 &&
+                        currentCardIndex == index,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          ++widget.itemCount;
+                        });
+                      },
+                      child: Container(
+                        width: 25.w,
+                        height: 25.h,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(2),
+                            topLeft: Radius.circular(20),
+                            bottomLeft: Radius.circular(2),
+                            bottomRight: Radius.circular(2),
+                          ),
+                          color: kMainColor,
+                        ),
+                        child: Icon(
+                          Icons.add,
+                          color: kWhite,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

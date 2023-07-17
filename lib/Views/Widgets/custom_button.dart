@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
     return Material(
       elevation: 3,
       borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(25), bottomLeft: Radius.circular(25)),
+          topRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
       child: InkWell(
         onTap: onTap,
         child: Container(
@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
             color: color,
             border: Border.all(color: kMainColor),
             borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(25), bottomLeft: Radius.circular(25)),
+                topRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
           ),
           child: Center(child: child),
         ),
