@@ -7,6 +7,7 @@ import '../Widgets/bground_image.dart';
 import '../../constants/app_images.dart';
 
 import '../../constants/colors.dart';
+import '../Widgets/main_drawer.dart';
 
 class MyCartScreen extends StatefulWidget {
   MyCartScreen({super.key});
@@ -21,7 +22,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: MainDrawer(),
       appBar: AppBar(
         title: Text(
           'My Cart',

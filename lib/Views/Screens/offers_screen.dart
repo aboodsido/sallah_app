@@ -7,6 +7,7 @@ import '../../constants/colors.dart';
 import '../../constants/app_images.dart';
 import '../Widgets/bground_image.dart';
 import '../Widgets/custom_button.dart';
+import '../Widgets/main_drawer.dart';
 
 class OffersScreen extends StatefulWidget {
   int itemCount = 0;
@@ -23,7 +24,7 @@ class _OffersScreenState extends State<OffersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: MainDrawer(),
       appBar: AppBar(
         title: Text(
           'Offers',

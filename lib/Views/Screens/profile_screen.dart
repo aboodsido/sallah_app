@@ -9,13 +9,14 @@ import '../../constants/screen_size.dart';
 import '../Widgets/appbar_shape.dart';
 import '../Widgets/bground_image.dart';
 import '../Widgets/image_border.dart';
+import '../Widgets/main_drawer.dart';
 import 'edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: MainDrawer(),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
