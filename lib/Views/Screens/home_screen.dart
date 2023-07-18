@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sallah_app/Views/Screens/search_screen.dart';
-import 'package:sallah_app/Views/Widgets/bground_image.dart';
-import 'package:sallah_app/Views/Widgets/custom_button.dart';
-import 'package:sallah_app/constants/app_images.dart';
-import 'package:sallah_app/constants/colors.dart';
-import 'package:sallah_app/constants/screen_size.dart';
+import 'search_screen.dart';
 
-import '../Widgets/drawer_listtile.dart';
+import '../Widgets/bground_image.dart';
+import '../Widgets/custom_button.dart';
+import '../../constants/app_images.dart';
+import '../../constants/colors.dart';
+import '../../constants/screen_size.dart';
 import '../Widgets/main_drawer.dart';
 
 // ignore: must_be_immutable
@@ -35,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MainDrawer(),
+      drawer: const MainDrawer(),
       extendBodyBehindAppBar: false,
       appBar: AppBar(
         iconTheme: IconThemeData(color: kMainColor, size: 25.sp),
@@ -53,8 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
             child: InkWell(
               onTap: () {
                 //todo: Navigate to search screen
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SearchScreen()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SearchScreen(),
+                  ),
+                );
               },
               child: Container(
                 width: 80.w,

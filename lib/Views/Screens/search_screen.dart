@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sallah_app/Views/Widgets/bground_image.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -60,8 +61,8 @@ class _SearchScreenState extends State<SearchScreen> {
                               FocusScope.of(context).unfocus(),
                           onChanged: _performSearch,
                           decoration: const InputDecoration(
-                            border:
-                                UnderlineInputBorder(borderSide: BorderSide.none),
+                            border: UnderlineInputBorder(
+                                borderSide: BorderSide.none),
                             labelText: 'Search',
                             prefixIcon: Icon(Icons.search),
                           ),
@@ -92,7 +93,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   itemCount: searchResults.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(searchResults[index]),
+                      title: Text(
+                        searchResults[index],
+                        style: GoogleFonts.roboto(
+                          fontSize: 15.sp,
+                        ),
+                      ),
                     );
                   },
                 ),
