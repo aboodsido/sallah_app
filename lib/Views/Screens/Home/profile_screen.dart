@@ -5,12 +5,14 @@ import 'package:sallah_app/Views/Widgets/custom_button.dart';
 import 'package:sallah_app/Views/Widgets/custom_container.dart';
 import 'package:sallah_app/constants/colors.dart';
 
-import '../../constants/screen_size.dart';
-import '../Widgets/appbar_shape.dart';
-import '../Widgets/bground_image.dart';
-import '../Widgets/image_border.dart';
-import '../Widgets/main_drawer.dart';
-import 'edit_profile_screen.dart';
+import '../../../constants/screen_size.dart';
+import '../../Widgets/appbar_shape.dart';
+import '../../Widgets/bground_image.dart';
+import '../../Widgets/image_border.dart';
+import '../../Widgets/main_drawer.dart';
+import 'InnerScreens/edit_profile_screen.dart';
+
+
 
 class ProfileScreen extends StatelessWidget {
   @override

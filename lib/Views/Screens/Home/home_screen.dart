@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'search_screen.dart';
+import '../../../constants/app_images.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/screen_size.dart';
+import '../../Widgets/bground_image.dart';
+import '../../Widgets/custom_button.dart';
+import '../../Widgets/main_drawer.dart';
+import 'InnerScreens/search_screen.dart';
 
-import '../Widgets/bground_image.dart';
-import '../Widgets/custom_button.dart';
-import '../../constants/app_images.dart';
-import '../../constants/colors.dart';
-import '../../constants/screen_size.dart';
-import '../Widgets/main_drawer.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {

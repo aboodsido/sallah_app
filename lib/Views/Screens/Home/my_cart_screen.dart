@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sallah_app/Views/Widgets/custom_button.dart';
-import 'package:sallah_app/constants/screen_size.dart';
-import '../Widgets/bground_image.dart';
-import '../../constants/app_images.dart';
 
-import '../../constants/colors.dart';
-import '../Widgets/main_drawer.dart';
+import '../../../constants/app_images.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/screen_size.dart';
+import '../../Widgets/bground_image.dart';
+import '../../Widgets/custom_appbar.dart';
+import '../../Widgets/custom_button.dart';
+import '../../Widgets/main_drawer.dart';
+import 'InnerScreens/checkout_screen.dart';
 
 class MyCartScreen extends StatefulWidget {
   MyCartScreen({super.key});
@@ -22,25 +24,12 @@ class _MyCartScreenState extends State<MyCartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MainDrawer(),
-      appBar: AppBar(
-        title: Text(
-          'My Cart',
-          style: GoogleFonts.roboto(fontSize: 20.sp),
-        ),
-        centerTitle: true,
-        // elevation: 0,
-        backgroundColor: kMainColor,
-        toolbarHeight: 50.h,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(25),
-            bottomRight: Radius.circular(25),
-          ),
-        ),
-
-        actions: [
-          Center(
+      drawer: const MainDrawer(),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50.h),
+        child: CustomAppBar(
+          appBarTitle: 'My Cart',
+          actionsWidget: Center(
             child: Text.rich(
               TextSpan(
                 children: [
@@ -62,7 +51,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
               ),
             ),
           ),
-        ],
+        ),
       ),
       body: Stack(
         children: [
@@ -228,7 +217,12 @@ class _MyCartScreenState extends State<MyCartScreen> {
                 'Checkout (${widget.itemCount})',
                 style: GoogleFonts.roboto(color: kWhite, fontSize: 15.sp),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CheckoutScreen()));
+              },
             ),
           )
         ],

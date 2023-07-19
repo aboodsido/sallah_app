@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'home_screen.dart';
-import 'my_cart_screen.dart';
-import 'offers_screen.dart';
-import 'profile_screen.dart';
+import 'Home/home_screen.dart';
+import 'Home/my_cart_screen.dart';
+import 'Home/offers_screen.dart';
+import 'Home/profile_screen.dart';
+
 import '../../constants/colors.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {

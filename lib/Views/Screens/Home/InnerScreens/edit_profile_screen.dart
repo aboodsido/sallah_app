@@ -5,10 +5,10 @@ import 'package:sallah_app/Views/Widgets/custom_button.dart';
 import 'package:sallah_app/Views/Widgets/custom_container.dart';
 import 'package:sallah_app/constants/colors.dart';
 
-import '../../constants/screen_size.dart';
-import '../Widgets/appbar_shape.dart';
-import '../Widgets/bground_image.dart';
-import '../Widgets/image_border.dart';
+import '../../../../constants/screen_size.dart';
+import '../../../Widgets/appbar_shape.dart';
+import '../../../Widgets/bground_image.dart';
+import '../../../Widgets/image_border.dart';
 
 class EditProfileScreen extends StatefulWidget {
   @override
@@ -58,9 +58,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   child: Card(
                     elevation: 0,
                     margin: EdgeInsets.only(top: 300.h, bottom: 20.h),
-                    shape:  OutlineInputBorder(
+                    shape: OutlineInputBorder(
                       borderSide: BorderSide(width: 0, color: kWhite),
-                      borderRadius:const BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(20),
                       ),
                     ),

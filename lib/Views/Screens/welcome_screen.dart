@@ -7,6 +7,7 @@ import 'package:sallah_app/constants/app_images.dart';
 import 'package:sallah_app/constants/colors.dart';
 
 import '../../constants/screen_size.dart';
+import 'navigator_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -15,8 +16,8 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
-        height:  ScreenSize.getHeight(context),
-        width:  ScreenSize.getWidth(context),
+        height: ScreenSize.getHeight(context),
+        width: ScreenSize.getWidth(context),
         child: Stack(
           children: [
             const BackgroundImage(),
@@ -66,9 +67,14 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, '/HomeScreen');
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CustomBottomNavigationBar(),
+                          ),
+                        );
                       },
-                    ), 
+                    ),
                   ],
                 ),
               ),

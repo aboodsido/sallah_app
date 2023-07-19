@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../constants/app_images.dart';
-import '../../constants/colors.dart';
-import '../../constants/screen_size.dart';
-import '../Widgets/custom_button.dart';
-import '../Widgets/custom_container.dart';
+import '../../../constants/app_images.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/screen_size.dart';
+import '../../Widgets/custom_button.dart';
+import '../../Widgets/custom_container.dart';
+
 
 class ForgotPassScreen extends StatefulWidget {
   const ForgotPassScreen({super.key});

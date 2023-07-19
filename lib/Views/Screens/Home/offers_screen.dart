@@ -3,11 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/app_images.dart';
-import '../Widgets/bground_image.dart';
-import '../Widgets/custom_button.dart';
-import '../Widgets/main_drawer.dart';
+import '../../../constants/app_images.dart';
+import '../../../constants/colors.dart';
+import '../../Widgets/bground_image.dart';
+import '../../Widgets/custom_appbar.dart';
+import '../../Widgets/custom_button.dart';
+import '../../Widgets/main_drawer.dart';
 
 class OffersScreen extends StatefulWidget {
   int itemCount = 0;
@@ -25,19 +26,10 @@ class _OffersScreenState extends State<OffersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MainDrawer(),
-      appBar: AppBar(
-        title: Text(
-          'Offers',
-          style: GoogleFonts.roboto(fontSize: 20.sp),
-        ),
-        centerTitle: true,
-        backgroundColor: kMainColor,
-        toolbarHeight: 50.h,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(25),
-            bottomRight: Radius.circular(25),
-          ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50.h),
+        child: CustomAppBar(
+          appBarTitle: 'Offers',
         ),
       ),
       body: Stack(

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sallah_app/Views/Screens/city_screen.dart';
-import 'package:sallah_app/Views/Screens/signup_screen.dart';
 import 'package:sallah_app/constants/colors.dart';
 
-import 'Views/Screens/forgot_pass_screen.dart';
-import 'Views/Screens/home_screen.dart';
-import 'Views/Screens/login_screen.dart';
 import 'Views/Screens/pageview_screen.dart';
 import 'Views/Screens/splash_screen.dart';
-import 'Views/Screens/test.dart';
+import 'Views/Screens/navigator_screen.dart';
 import 'Views/Screens/welcome_screen.dart';
 
 void main() {

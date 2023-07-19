@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../constants/screen_size.dart';
-import '../Widgets/appbar_shape.dart';
-import '../Widgets/bground_image.dart';
-import '../Widgets/custom_button.dart';
-import '../Widgets/custom_container.dart';
-import '../../constants/app_images.dart';
-import '../../constants/colors.dart';
+import '../../Widgets/appbar_shape.dart';
+import '../../Widgets/bground_image.dart';
+import '../../../constants/app_images.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/screen_size.dart';
+import '../../Widgets/custom_button.dart';
+import '../../Widgets/custom_container.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -57,8 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 top: 80.h,
                 child: Text(
                   'Sign In',
-                  style:
-                      GoogleFonts.roboto(color: kWhite, fontSize: 35.sp),
+                  style: GoogleFonts.roboto(color: kWhite, fontSize: 35.sp),
                 ),
               ),
               Positioned(
@@ -66,8 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 top: 50.h,
                 child: Text(
                   'Skip',
-                  style:
-                      GoogleFonts.roboto(color: kWhite, fontSize: 15.sp),
+                  style: GoogleFonts.roboto(color: kWhite, fontSize: 15.sp),
                 ),
               ),
               Center(
