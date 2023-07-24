@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sallah_app/Views/Screens/DrawerScreens/about_us_screen.dart';
+import 'package:sallah_app/Views/Screens/DrawerScreens/my_orders_screen.dart';
 
 import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
 import '../../constants/screen_size.dart';
+import '../Screens/DrawerScreens/change_pass_screen.dart';
 import 'drawer_listtile.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -28,7 +31,7 @@ class MainDrawer extends StatelessWidget {
           SvgPicture.asset(
             Assets.imagesDrawerShape,
           ),
-          Container(
+          SizedBox(
             width: ScreenSize.getWidth(context),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -44,7 +47,14 @@ class MainDrawer extends StatelessWidget {
                 SizedBox(height: 10.h),
                 DrawerListTile(
                   icon: Icons.shopping_bag_outlined,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MyOrdersScreen(),
+                      ),
+                    );
+                  },
                   title: 'My Orders',
                 ),
                 SizedBox(height: 5.h),
@@ -56,7 +66,14 @@ class MainDrawer extends StatelessWidget {
                 SizedBox(height: 5.h),
                 DrawerListTile(
                   icon: Icons.lock_reset_outlined,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChangePasswordScreen(),
+                      ),
+                    );
+                  },
                   title: 'Change Password',
                 ),
                 SizedBox(height: 5.h),
@@ -68,7 +85,14 @@ class MainDrawer extends StatelessWidget {
                 SizedBox(height: 5.h),
                 DrawerListTile(
                   icon: Icons.feedback_outlined,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AboutUsScreen(),
+                      ),
+                    );
+                  },
                   title: 'About us',
                 ),
                 SizedBox(height: 5.h),

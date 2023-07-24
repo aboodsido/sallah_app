@@ -1,6 +1,14 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesAboutUs
+  /// assets/images/about-us.png
+  static const String imagesAboutUs = "assets/images/about-us.png";
+
+  /// Assets for imagesAboutUsShape
+  /// assets/images/about-us-shape.svg
+  static const String imagesAboutUsShape = "assets/images/about-us-shape.svg";
+
   /// Assets for imagesAppBarShape
   /// assets/images/appBarShape.png
   static const String imagesAppBarShape = "assets/images/appBarShape.png";
@@ -12,6 +20,14 @@ class Assets {
   /// Assets for imagesBground
   /// assets/images/bground.png
   static const String imagesBground = "assets/images/bground.png";
+
+  /// Assets for imagesDeliveryTruck
+  /// assets/images/delivery-truck.svg
+  static const String imagesDeliveryTruck = "assets/images/delivery-truck.svg";
+
+  /// Assets for imagesDiscountDone
+  /// assets/images/discountDone.svg
+  static const String imagesDiscountDone = "assets/images/discountDone.svg";
 
   /// Assets for imagesDrawerShape
   /// assets/images/drawerShape.svg
@@ -36,6 +52,10 @@ class Assets {
   /// Assets for imagesMe
   /// assets/images/me.jpg
   static const String imagesMe = "assets/images/me.jpg";
+
+  /// Assets for imagesOrderDone
+  /// assets/images/orderDone.svg
+  static const String imagesOrderDone = "assets/images/orderDone.svg";
 
   /// Assets for imagesPview1
   /// assets/images/pview1.png

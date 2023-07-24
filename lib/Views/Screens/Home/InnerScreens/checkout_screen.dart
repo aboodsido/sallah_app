@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sallah_app/Views/Widgets/bground_image.dart';
-import 'package:sallah_app/Views/Widgets/custom_appbar.dart';
-import 'package:sallah_app/constants/colors.dart';
+import '../../../Widgets/bground_image.dart';
+import '../../../Widgets/custom_appbar.dart';
+import '../../../Widgets/custom_button.dart';
+import '../../../../constants/app_images.dart';
+import '../../../../constants/colors.dart';
 
 import '../../../Widgets/checkout_item.dart';
 import '../../../Widgets/custom_container.dart';
@@ -29,6 +32,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   ];
 
   final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _discountController = TextEditingController();
+
+  @override
+  void dispose() {
+    _addressController.dispose();
+    _discountController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +70,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   itemBuilder: (context, index) {
                     return const CheckoutItemWidget();
                   },
-                  itemCount: 5,
+                  itemCount: 3,
                 ),
                 Padding(
                   padding:
@@ -144,12 +156,236 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
                     ),
                   ),
-                )
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+                  child: SizedBox(
+                    height: 200.h,
+                    child: Card(
+                      elevation: 3,
+                      color: const Color(0xffF0F5E0),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Total : ',
+                                  style: GoogleFonts.roboto(
+                                      color: kGrey, fontSize: 14.sp),
+                                ),
+                                Text(
+                                  '20\$',
+                                  style: GoogleFonts.roboto(
+                                      color: kMainColor, fontSize: 16.sp),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10.h),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Discount : ',
+                                  style: GoogleFonts.roboto(
+                                      color: kGrey, fontSize: 14.sp),
+                                ),
+                                Text(
+                                  '20\$',
+                                  style: GoogleFonts.roboto(
+                                      color: kMainColor, fontSize: 16.sp),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10.h),
+                            Divider(
+                              thickness: 1,
+                              color: kMainColor,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Total : ',
+                                  style: GoogleFonts.roboto(
+                                      color: kGrey, fontSize: 14.sp),
+                                ),
+                                Text(
+                                  '200\$',
+                                  style: GoogleFonts.roboto(
+                                      color: kMainColor, fontSize: 16.sp),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 20.h),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CustomButton(
+                                  width: 120.w,
+                                  height: 40.h,
+                                  color: kMainColor,
+                                  child: Text(
+                                    'Order Now',
+                                    style: GoogleFonts.roboto(
+                                        color: kWhite, fontSize: 15.sp),
+                                  ),
+                                  onTap: () {
+                                    showCustomDialog(
+                                      context,
+                                      buttonText: 'Go Home',
+                                      desc:
+                                          'Operation completed Order successfully',
+                                      onTapButton: () {},
+                                      image: Assets.imagesOrderDone,
+                                    );
+                                  },
+                                ),
+                                CustomButton(
+                                  width: 120.w,
+                                  height: 40.h,
+                                  color: kMainColor,
+                                  child: Text(
+                                    'Discount',
+                                    style: GoogleFonts.roboto(
+                                        color: kWhite, fontSize: 15.sp),
+                                  ),
+                                  onTap: () {
+                                    showCustomDialog(
+                                      context,
+                                      buttonText: 'Check',
+                                      desc:
+                                          'Please enter a valid code to get a discount .',
+                                      onTapButton: () {
+                                        showCustomDialog(context,
+                                            desc:
+                                                'The valid discount code will be 20% discount on total order',
+                                            buttonText: 'Ok',
+                                            onTapButton: () {},
+                                            image: Assets.imagesDiscountDone);
+                                      },
+                                      title: 'Discount Code',
+                                      discountField: CustomContainer(
+                                        width: double.infinity,
+                                        height: 40.h,
+                                        color: Colors.transparent,
+                                        child: TextFormField(
+                                          controller: _discountController,
+                                          decoration: InputDecoration(
+                                            prefixIcon: Icon(
+                                                Icons
+                                                    .confirmation_number_outlined,
+                                                color: kMainColor),
+                                            hintText: 'Discount Code',
+                                            hintStyle: GoogleFonts.roboto(
+                                                fontSize: 16.sp, color: kBlack),
+                                            border: const UnderlineInputBorder(
+                                                borderSide: BorderSide.none),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  void showCustomDialog(
+    BuildContext context, {
+    String? image,
+    required String desc,
+    Widget? discountField,
+    required String buttonText,
+    required VoidCallback onTapButton,
+    String? title,
+  }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.zero,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          content: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (title != null && title.isNotEmpty)
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.0.h),
+                    child: Text(
+                      title,
+                      style: GoogleFonts.roboto(
+                        fontSize: 20.sp,
+                        color: const Color(0xffAECB1B),
+                      ),
+                    ),
+                  ),
+                if (image != null && image.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: SvgPicture.asset(
+                      image,
+                      height: 80.h,
+                      width: 80.w,
+                    ),
+                  ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0.h),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    desc,
+                    style: GoogleFonts.roboto(fontSize: 14.sp, color: kGrey),
+                  ),
+                ),
+                const SizedBox(height: 16.0),
+                discountField ?? Container(),
+                const SizedBox(height: 16.0),
+                CustomButton(
+                  width: 120.w,
+                  height: 35.h,
+                  color: kMainColor,
+                  onTap: onTapButton,
+                  child: Text(
+                    buttonText,
+                    style: GoogleFonts.roboto(color: kWhite, fontSize: 15.sp),
+                  ),
+                ),
+                const SizedBox(height: 16.0),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

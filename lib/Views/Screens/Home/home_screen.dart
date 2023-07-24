@@ -9,7 +9,6 @@ import '../../Widgets/custom_button.dart';
 import '../../Widgets/main_drawer.dart';
 import 'InnerScreens/search_screen.dart';
 
-
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   HomeScreen({
