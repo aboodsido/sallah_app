@@ -3,7 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sallah_app/Views/Screens/DrawerScreens/about_us_screen.dart';
+import 'package:sallah_app/Views/Screens/DrawerScreens/contact_us_screen.dart';
+import 'package:sallah_app/Views/Screens/DrawerScreens/fqa_screen.dart';
 import 'package:sallah_app/Views/Screens/DrawerScreens/my_orders_screen.dart';
+import 'package:sallah_app/Views/Screens/DrawerScreens/privacy_screen.dart';
+import 'package:sallah_app/Views/Screens/DrawerScreens/terms_screen.dart';
 
 import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
@@ -98,7 +102,14 @@ class MainDrawer extends StatelessWidget {
                 SizedBox(height: 5.h),
                 DrawerListTile(
                   icon: Icons.support_agent_outlined,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ContactUsScreen(),
+                      ),
+                    );
+                  },
                   title: 'Contact us',
                 ),
                 SizedBox(height: 5.h),
@@ -110,19 +121,40 @@ class MainDrawer extends StatelessWidget {
                 SizedBox(height: 5.h),
                 DrawerListTile(
                   icon: Icons.contact_support_outlined,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FQAScreen(),
+                      ),
+                    );
+                  },
                   title: 'FQA',
                 ),
                 SizedBox(height: 5.h),
                 DrawerListTile(
                   icon: Icons.library_books_outlined,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TermsScreen(),
+                      ),
+                    );
+                  },
                   title: 'Terms of use',
                 ),
                 SizedBox(height: 5.h),
                 DrawerListTile(
                   icon: Icons.privacy_tip_outlined,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PrivacyScreen(),
+                      ),
+                    );
+                  },
                   title: 'Privacy Policy',
                 ),
                 SizedBox(height: 5.h),
