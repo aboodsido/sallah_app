@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:sallah_app/secured_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Models/profile_data.dart';
@@ -10,7 +9,6 @@ import '../../Views/Widgets/custom_dialog.dart';
 import '../../constants/api_consts.dart';
 
 class RegisterController {
-
   static Future register(
       String email, password, phoneNumber, name, context) async {
     try {
@@ -27,8 +25,6 @@ class RegisterController {
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
         if (data['status'] == true) {
-          
-
           //* store the user data loacally
           final name = data['user']['name'];
           final email = data['user']['email'];

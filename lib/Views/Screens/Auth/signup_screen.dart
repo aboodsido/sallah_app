@@ -1,13 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sallah_app/Models/profile_data.dart';
-import 'package:sallah_app/Views/Widgets/custom_dialog.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Controllers/Auth/register_controller.dart';
 import '../../../constants/app_images.dart';
@@ -17,6 +12,7 @@ import '../../Widgets/appbar_shape.dart';
 import '../../Widgets/bground_image.dart';
 import '../../Widgets/custom_button.dart';
 import '../../Widgets/custom_container.dart';
+import '../../Widgets/custom_dialog.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sallah_app/Controllers/Auth/login_controller.dart';
-import 'package:sallah_app/Views/Widgets/custom_dialog.dart';
 
 import '../../../constants/app_images.dart';
 import '../../../constants/colors.dart';
@@ -14,7 +13,6 @@ import '../../Widgets/appbar_shape.dart';
 import '../../Widgets/bground_image.dart';
 import '../../Widgets/custom_button.dart';
 import '../../Widgets/custom_container.dart';
-import '../navigator_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

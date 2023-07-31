@@ -2,12 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:sallah_app/Views/Screens/Home/profile_screen.dart';
 import 'package:sallah_app/secured_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Models/profile_data.dart';
-import '../../Views/Screens/navigator_screen.dart';
 import '../../Views/Widgets/custom_dialog.dart';
 import '../../constants/api_consts.dart';
 
