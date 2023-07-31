@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sallah_app/Views/Screens/Auth/login_screen.dart';
 import 'package:sallah_app/Views/Screens/DrawerScreens/about_us_screen.dart';
 import 'package:sallah_app/Views/Screens/DrawerScreens/contact_us_screen.dart';
 import 'package:sallah_app/Views/Screens/DrawerScreens/fqa_screen.dart';
@@ -160,7 +161,14 @@ class MainDrawer extends StatelessWidget {
                 SizedBox(height: 5.h),
                 DrawerListTile(
                   icon: Icons.logout_rounded,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  },
                   title: 'Logout',
                 ),
               ],

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sallah_app/Views/Widgets/custom_container.dart';
 
+import '../../Controllers/App/get_cities_controller.dart';
 import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
 import '../../constants/screen_size.dart';
@@ -17,25 +18,13 @@ class CityScreen extends StatefulWidget {
 
 class _CityScreenState extends State<CityScreen> {
   String? selectedItem;
-  List<String> cities = [
-    'Gaza',
-    'Nusiratt',
-    'Rafah',
-    'Jabalia',
-    'Khan Yunis',
-    'Beit Hanoun',
-    'Ramallah',
-    'Al Qudis'
-  ];
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       body: Container(
-        width:  ScreenSize.getWidth(context),
-        height:  ScreenSize.getHeight(context),
+        width: ScreenSize.getWidth(context),
+        height: ScreenSize.getHeight(context),
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(Assets.imagesBground), fit: BoxFit.cover),
@@ -139,23 +128,44 @@ class _CityScreenState extends State<CityScreen> {
           content: SizedBox(
             width: 50.w,
             height: 200.h,
-            child: ListView.builder(
-              itemCount: cities.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedItem = cities[index];
-                      });
-                      Navigator.canPop(context) ? Navigator.pop(context) : null;
-                    },
-                    child: Text(
-                      cities[index],
+            child: FutureBuilder(
+              future: GetCitiesController.fetchCityNames(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: kMainColor,
                     ),
-                  ),
-                );
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Error: ${snapshot.error}'),
+                  );
+                } else {
+                  final cityNames = snapshot.data!;
+                  return ListView.separated(
+                    separatorBuilder: (context, index) => const Divider(),
+                    itemCount: cityNames.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 15, top: 15),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedItem = cityNames[index];
+                            });
+                            Navigator.canPop(context)
+                                ? Navigator.pop(context)
+                                : null;
+                          },
+                          child: Text(
+                            cityNames[index]!,
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }
               },
             ),
           ),

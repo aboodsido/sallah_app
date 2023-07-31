@@ -8,7 +8,6 @@ import '../../../constants/screen_size.dart';
 import '../../Widgets/custom_button.dart';
 import '../../Widgets/custom_container.dart';
 
-
 class ForgotPassScreen extends StatefulWidget {
   const ForgotPassScreen({super.key});
 

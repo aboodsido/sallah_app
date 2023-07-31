@@ -1,12 +1,20 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sallah_app/Models/profile_data.dart';
+import 'package:sallah_app/Views/Widgets/custom_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Widgets/appbar_shape.dart';
-import '../../Widgets/bground_image.dart';
+import '../../../Controllers/Auth/register_controller.dart';
 import '../../../constants/app_images.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/screen_size.dart';
+import '../../Widgets/appbar_shape.dart';
+import '../../Widgets/bground_image.dart';
 import '../../Widgets/custom_button.dart';
 import '../../Widgets/custom_container.dart';
 
@@ -185,9 +193,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       color: kWhite, fontSize: 15.sp),
                                 ),
                               ),
-                              onTap: () {
-                                Navigator.pushReplacementNamed(
-                                    context, '/WelcomeScreen');
+                              onTap: () async {
+                                try {
+                                  RegisterController.register(
+                                      _emailTextCotroller.text,
+                                      _passTextCotroller.text,
+                                      _phoneNumTextCotroller.text,
+                                      _nameTextCotroller.text,
+                                      context);
+                                } catch (e) {
+                                  CustomDialog.showSnackBar(
+                                      context, e.toString(), Colors.red);
+                                }
                               },
                             ),
                             SizedBox(height: 10.h),

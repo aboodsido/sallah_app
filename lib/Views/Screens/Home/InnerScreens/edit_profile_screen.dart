@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sallah_app/Controllers/Auth/edit_profile.dart';
 import 'package:sallah_app/Views/Widgets/custom_button.dart';
 import 'package:sallah_app/Views/Widgets/custom_container.dart';
 import 'package:sallah_app/constants/colors.dart';
@@ -8,9 +9,12 @@ import 'package:sallah_app/constants/colors.dart';
 import '../../../../constants/screen_size.dart';
 import '../../../Widgets/appbar_shape.dart';
 import '../../../Widgets/bground_image.dart';
+import '../../../Widgets/custom_dialog.dart';
 import '../../../Widgets/image_border.dart';
 
 class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({super.key});
+
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
 }
@@ -121,7 +125,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 style: GoogleFonts.roboto(
                                     color: kWhite, fontSize: 15.sp),
                               ),
-                              onTap: () {})
+                              onTap: () {
+                                try {
+                                  EditProfileController.editProfile(
+                                      _nameTextCotroller.text,
+                                      _emailTextCotroller.text,
+                                      _phoneNumberTextCotroller.text,
+                                      context);
+
+                                  setState(() {
+                                    _nameTextCotroller.clear();
+                                    _emailTextCotroller.clear();
+                                    _phoneNumberTextCotroller.clear();
+                                  });
+                                } catch (e) {
+                                  CustomDialog.showSnackBar(
+                                      context, e.toString(), Colors.red);
+                                }
+                              })
                         ],
                       ),
                     ),

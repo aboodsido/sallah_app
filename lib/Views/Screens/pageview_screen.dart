@@ -90,8 +90,7 @@ class _PageViewScreenState extends State<PageViewScreen> {
                 child: Center(
                   child: Text(
                     'Get Started',
-                    style: GoogleFonts.roboto(
-                        color: kWhite, fontSize: 14.sp),
+                    style: GoogleFonts.roboto(color: kWhite, fontSize: 14.sp),
                   ),
                 ),
               ),

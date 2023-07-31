@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../constants/app_images.dart';
+import 'package:sallah_app/Controllers/App/get_categories_controller.dart';
+
 import '../../../constants/colors.dart';
 import '../../../constants/screen_size.dart';
 import '../../Widgets/bground_image.dart';
@@ -22,12 +23,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> tabs = ['Vegetables', 'Fruits', 'Meat', 'Papers'];
-
   int current = 0;
   int currentCardIndex = 0;
 
   bool isInCart = false;
+
+  int selectedCategoryId = 1;
+
 
   @override
   Widget build(BuildContext context) {
@@ -88,77 +90,144 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 50.h,
                   width: ScreenSize.getWidth(context),
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: tabs.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          setState(() {
-                            current = index;
-                          });
-                        },
-                        child: Card(
-                          color: current == index ? kMainColor : kWhite,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(35),
-                            ),
+                  child: FutureBuilder(
+                    future: GetCategories.getCategories(),
+                    builder: ((context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: kMainColor,
                           ),
-                          elevation: 2,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 20,
-                                    right: 20,
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(
+                          child: Text('there is an error : ${snapshot.error}'),
+                        );
+                      } else {
+                        final categoryModel = snapshot.data!;
+                        if (categoryModel.categories == null ||
+                            categoryModel.categories!.isEmpty) {
+                          return const Center(
+                            child: Text('No categories found.'),
+                          );
+                        } else {
+                          return ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: categoryModel.categories?.length ?? 0,
+                            itemBuilder: (context, index) {
+                              final category = categoryModel.categories![index];
+                              return InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    current = index;
+                                    selectedCategoryId = category.id!;
+                                    print(
+                                        "selectedCategoryId $selectedCategoryId");
+                                  });
+                                },
+                                child: Card(
+                                  color: current == index ? kMainColor : kWhite,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(35),
+                                    ),
                                   ),
-                                  child: Row(
+                                  elevation: 2,
+                                  child: Column(
                                     children: [
-                                      const Icon(Icons.zoom_out_rounded),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        tabs[index],
-                                        style: GoogleFonts.roboto(
-                                          fontSize: 15.sp,
-                                          color: current == index
-                                              ? kWhite
-                                              : kMainColor,
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 20,
+                                            right: 20,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Image.network(category.image!,
+                                                  width: 40.w,
+                                                  height: 40.h,
+                                                  color: current == index
+                                                      ? kWhite
+                                                      : null),
+                                              const SizedBox(width: 5),
+                                              Text(
+                                                category.name!,
+                                                style: GoogleFonts.roboto(
+                                                  fontSize: 15.sp,
+                                                  color: current == index
+                                                      ? kWhite
+                                                      : kMainColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+                              );
+                            },
+                          );
+                        }
+                      }
+                    }),
                   ),
                 ),
                 SizedBox(height: 20.h),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: GridView.builder(
-                      itemCount: 6,
-                      physics: const BouncingScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 3 / 4,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                      ),
-                      itemBuilder: (context, index) {
-                        return SizedBox(
-                          width: 160.w,
-                          height: 200.h,
-                          child: itemCard(index),
-                        );
+                    child: FutureBuilder(
+                      future: GetCategories.getProductByCategoryId(
+                          selectedCategoryId),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: kMainColor,
+                            ),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Text('Error: ${snapshot.error}'),
+                          );
+                        } else {
+                          final productModel = snapshot.data!;
+                          final products = productModel.products;
+
+                          if (products == null || products.isEmpty) {
+                            return const Center(
+                              child:
+                                  Text('No products found for this category.'),
+                            );
+                          } else {
+                            return GridView.builder(
+                              itemCount: products.length,
+                              physics: const BouncingScrollPhysics(),
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 3 / 4,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                              ),
+                              itemBuilder: (context, index) {
+                                final product = products[index];
+                                return SizedBox(
+                                  width: 160.w,
+                                  height: 200.h,
+                                  child: itemCard(index,
+                                      image: product.image,
+                                      productName: product.name,
+                                      productPrice: product.price),
+                                );
+                              },
+                            );
+                          }
+                        }
                       },
                     ),
                   ),
@@ -171,7 +240,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Card itemCard(int index) {
+  Card itemCard(
+    int index, {
+    required String image,
+    required String productName,
+    required double productPrice,
+  }) {
     return Card(
       elevation: 3,
       shape: const RoundedRectangleBorder(
@@ -186,14 +260,14 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Center(
           child: Column(
             children: [
-              Image.asset(
-                Assets.imagesApple,
+              Image.network(
+                image,
                 width: 75.w,
                 height: 75.h,
               ),
               SizedBox(height: 5.h),
               Text(
-                'Data',
+                productName,
                 style: GoogleFonts.roboto(
                   fontSize: 13.sp,
                   color: kGrey,
@@ -201,7 +275,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 5.h),
               Text(
-                '5.00 \$/K',
+                '$productPrice \$/K',
                 style: GoogleFonts.roboto(
                   fontSize: 18.sp,
                   color: kMainColor,

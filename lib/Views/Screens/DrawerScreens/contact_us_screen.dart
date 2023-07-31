@@ -8,6 +8,7 @@ import '../../Widgets/bground_image.dart';
 import '../../Widgets/custom_appbar.dart';
 import '../../Widgets/custom_button.dart';
 import '../../Widgets/custom_container.dart';
+import 'InnerScreens/contact_done_screen.dart';
 
 class ContactUsScreen extends StatefulWidget {
   const ContactUsScreen({super.key});
@@ -254,7 +255,13 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                       color: kWhite, fontSize: 15.sp),
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ContactDoneScreen()));
+                              },
                             ),
                             SizedBox(height: 20.h),
                           ],
