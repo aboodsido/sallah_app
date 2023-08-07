@@ -1,39 +1,62 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 import 'package:sallah_app/Views/Widgets/bground_image.dart';
 
+import '../../../../Models/product_model/product_model.dart';
+import '../../../../constants/api_consts.dart';
+import '../../../Widgets/custom_dialog.dart';
+
 class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
+
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<String> allItems = [
-    // This is just an example list of items. You can replace it with your actual data.
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-    'Vegetables',
-    'Fruits',
-    'Meat',
-    'Papers',
-  ];
+ 
+  List<String> _productNames = [];
 
-  List<String> searchResults = [];
+  Future search(String textSearch, context) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse('${BASE_URL}search'),
+        body: {'text': textSearch},
+      );
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
 
-  void _performSearch(String query) {
-    setState(() {
-      searchResults = allItems
-          .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-    });
+        ProductModel productModel = ProductModel.fromJson(jsonResponse);
+
+        // Extract the product names
+        List<String> productNames = productModel.products
+                ?.map((product) => product.name ?? '')
+                .toList() ??
+            [];
+
+        setState(() {
+          _productNames = productNames;
+        });
+      } else {
+        CustomDialog.showSnackBar(context, 'There is some error', Colors.red);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
   }
+
+  // void _performSearch(String query) async {
+  //   await search(searchController.text, context);
+  //   setState(() {
+  //     searchResults = productNames
+  //         .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+  //         .toList();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +80,12 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: Color(0xffEDEFED),
                         ),
                         child: TextField(
+                          // controller: searchController,
                           onTapOutside: (event) =>
                               FocusScope.of(context).unfocus(),
-                          onChanged: _performSearch,
+                          onChanged: (searchText) async {
+                            await search(searchText, context);
+                          },
                           decoration: const InputDecoration(
                             border: UnderlineInputBorder(
                                 borderSide: BorderSide.none),
@@ -90,11 +116,11 @@ class _SearchScreenState extends State<SearchScreen> {
                     endIndent: 20,
                     thickness: 1,
                   ),
-                  itemCount: searchResults.length,
+                  itemCount: _productNames.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: Text(
-                        searchResults[index],
+                        _productNames[index],
                         style: GoogleFonts.roboto(
                           fontSize: 15.sp,
                         ),
