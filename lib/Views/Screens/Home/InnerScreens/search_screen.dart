@@ -18,8 +18,8 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
- 
   List<String> _productNames = [];
+  List<String> _productImages = [];
 
   Future search(String textSearch, context) async {
     try {
@@ -37,9 +37,14 @@ class _SearchScreenState extends State<SearchScreen> {
                 ?.map((product) => product.name ?? '')
                 .toList() ??
             [];
+        List<String> productImages = productModel.products
+                ?.map((product) => product.image ?? '')
+                .toList() ??
+            [];
 
         setState(() {
           _productNames = productNames;
+          _productImages = productImages;
         });
       } else {
         CustomDialog.showSnackBar(context, 'There is some error', Colors.red);
@@ -48,15 +53,6 @@ class _SearchScreenState extends State<SearchScreen> {
       print(e.toString());
     }
   }
-
-  // void _performSearch(String query) async {
-  //   await search(searchController.text, context);
-  //   setState(() {
-  //     searchResults = productNames
-  //         .where((item) => item.toLowerCase().contains(query.toLowerCase()))
-  //         .toList();
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -119,11 +115,23 @@ class _SearchScreenState extends State<SearchScreen> {
                   itemCount: _productNames.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(
-                        _productNames[index],
-                        style: GoogleFonts.roboto(
-                          fontSize: 15.sp,
-                        ),
+                      title: Row(
+                        children: [
+                          Image.network(
+                            _productImages[index],
+                            width: 50,
+                            height: 50,
+                          ),
+                          SizedBox(
+                            width: 10.sp,
+                          ),
+                          Text(
+                            _productNames[index],
+                            style: GoogleFonts.roboto(
+                              fontSize: 15.sp,
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   },

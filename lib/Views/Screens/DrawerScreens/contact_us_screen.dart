@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sallah_app/Controllers/App/contact_us_controller.dart';
 
 import '../../../constants/colors.dart';
 import '../../Widgets/bground_image.dart';
 import '../../Widgets/custom_appbar.dart';
 import '../../Widgets/custom_button.dart';
 import '../../Widgets/custom_container.dart';
-import 'InnerScreens/contact_done_screen.dart';
 
 class ContactUsScreen extends StatefulWidget {
   const ContactUsScreen({super.key});
@@ -255,12 +255,13 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                       color: kWhite, fontSize: 15.sp),
                                 ),
                               ),
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ContactDoneScreen()));
+                              onTap: () async {
+                                await ContactUsController.sendFormData(context,
+                                    email: _emailController.text,
+                                    mobile: _phoneNumController.text,
+                                    name: _nameController.text,
+                                    message: _messageController.text,
+                                    type: _suggestionController.text);
                               },
                             ),
                             SizedBox(height: 20.h),
