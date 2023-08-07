@@ -30,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int selectedCategoryId = 1;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
