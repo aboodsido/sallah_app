@@ -4,8 +4,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sallah_app/Controllers/Auth/login_controller.dart';
 
+import '../../../Controllers/Auth/login_controller.dart';
+import '../../../app_preferences.dart';
 import '../../../constants/app_images.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/screen_size.dart';
@@ -161,6 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       _emailTextCotroller.text,
                                       _passTextCotroller.text,
                                       context);
+                                  AppPreferences.markLoggedIn();
                                 } catch (e) {
                                   print(e);
                                 }

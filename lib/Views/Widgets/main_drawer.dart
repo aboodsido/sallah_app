@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sallah_app/Views/Screens/Auth/login_screen.dart';
+import 'package:http/http.dart' as http;
 import 'package:sallah_app/Views/Screens/DrawerScreens/about_us_screen.dart';
 import 'package:sallah_app/Views/Screens/DrawerScreens/contact_us_screen.dart';
 import 'package:sallah_app/Views/Screens/DrawerScreens/fqa_screen.dart';
 import 'package:sallah_app/Views/Screens/DrawerScreens/my_orders_screen.dart';
 import 'package:sallah_app/Views/Screens/DrawerScreens/privacy_screen.dart';
 import 'package:sallah_app/Views/Screens/DrawerScreens/terms_screen.dart';
+import 'package:sallah_app/constants/api_consts.dart';
 
 import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
@@ -20,6 +21,22 @@ class MainDrawer extends StatelessWidget {
   const MainDrawer({
     super.key,
   });
+
+  Future<void> _logout() async {
+    var url =
+        Uri.parse('${BASE_URL}logout'); // Replace with your logout API endpoint
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      // Perform local logout operations - Clear user session/token
+      // For example, you can use shared_preferences or some other state management to clear the token.
+
+      // After clearing the session/token, navigate to the login screen or the home screen
+      print('done');
+    } else {
+      print('Logout failed. Status Code: ${response.statusCode}');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -161,13 +178,14 @@ class MainDrawer extends StatelessWidget {
                 SizedBox(height: 5.h),
                 DrawerListTile(
                   icon: Icons.logout_rounded,
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    );
+                  onTap: () async {
+                    await _logout();
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const LoginScreen(),
+                    //   ),
+                    // );
                   },
                   title: 'Logout',
                 ),

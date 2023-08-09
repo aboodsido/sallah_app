@@ -97,19 +97,20 @@ class _CityScreenState extends State<CityScreen> {
                   ),
                   SizedBox(height: 40.h),
                   CustomButton(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, '/AdsScreen');
-                      },
-                      width: 130.w,
-                      height: 35.h,
-                      color: kMainColor,
-                      child: Center(
-                        child: Text(
-                          'Ok',
-                          style: GoogleFonts.roboto(
-                              fontSize: 20.sp, color: kWhite),
-                        ),
-                      ))
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, '/NavigatorScreen');
+                    },
+                    width: 130.w,
+                    height: 35.h,
+                    color: kMainColor,
+                    child: Center(
+                      child: Text(
+                        'Ok',
+                        style:
+                            GoogleFonts.roboto(fontSize: 20.sp, color: kWhite),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )

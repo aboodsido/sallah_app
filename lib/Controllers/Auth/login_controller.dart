@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Models/profile_data.dart';
-import '../../Views/Screens/navigator_screen.dart';
+import '../../Views/Screens/custom_bottom_navigation_bar.dart';
 import '../../Views/Widgets/custom_dialog.dart';
 import '../../constants/api_consts.dart';
 import '../../secured_storage.dart';

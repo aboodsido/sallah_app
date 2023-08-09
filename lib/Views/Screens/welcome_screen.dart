@@ -7,7 +7,7 @@ import 'package:sallah_app/constants/app_images.dart';
 import 'package:sallah_app/constants/colors.dart';
 
 import '../../constants/screen_size.dart';
-import 'navigator_screen.dart';
+import 'custom_bottom_navigation_bar.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

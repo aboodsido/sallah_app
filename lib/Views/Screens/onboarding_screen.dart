@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sallah_app/app_preferences.dart';
 
 import '../../constants/screen_size.dart';
 import '../Widgets/custom_button.dart';
@@ -8,7 +9,9 @@ import '../../constants/app_images.dart';
 import '../../constants/colors.dart';
 
 class PageViewScreen extends StatefulWidget {
-  const PageViewScreen({super.key});
+  final VoidCallback onOnboardingFinished;
+
+  PageViewScreen({required this.onOnboardingFinished});
 
   @override
   State<PageViewScreen> createState() => _PageViewScreenState();
@@ -82,6 +85,7 @@ class _PageViewScreenState extends State<PageViewScreen> {
               bColor: const Color.fromARGB(255, 199, 231, 197),
               textButton: CustomButton(
                 onTap: () {
+                  AppPreferences.markOnboardingSeen();
                   Navigator.pushNamed(context, '/LoginScreen');
                 },
                 width: 130.w,
